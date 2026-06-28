@@ -1,4 +1,3 @@
-# cliente_teste.py
 import asyncio
 import json
 
@@ -10,13 +9,25 @@ async def main() -> dict:
     params = StdioServerParameters(command="python", args=["servidor_mcp.py"])
     async with stdio_client(params) as (read, write):
         async with ClientSession(read, write) as session:
+
+            # Inicializa a conexão MCP
             await session.initialize()
 
+            # Lista as ferramentas disponíveis
             tools = await session.list_tools()
-            nomes = [t.name for t in tools.tools]
+            nomes = [tool.name for tool in tools.tools]
 
-            criar = await session.call_tool("criar_tarefa", {"titulo": "tarefa via mcp"})
-            listar = await session.call_tool("listar_tarefas", {})
+            # Chama criar_tarefa
+            criar = await session.call_tool(
+                "criar_tarefa",
+                {"titulo": "tarefa via mcp"},
+            )
+
+            # Chama listar_tarefas
+            listar = await session.call_tool(
+                "listar_tarefas",
+                {},
+            )
 
             return {
                 "tools": nomes,
