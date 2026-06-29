@@ -6,7 +6,7 @@ from mcp.client.stdio import stdio_client
 
 
 async def main() -> dict:
-    params = StdioServerParameters(command="python3", args=["servidor_mcp.py"])
+    params = StdioServerParameters(command="python", args=["servidor_mcp.py"])
     async with stdio_client(params) as (read, write):
         async with ClientSession(read, write) as session:
 
