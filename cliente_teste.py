@@ -22,7 +22,18 @@ async def main() -> dict:
                 "criar_tarefa",
                 {"titulo": "tarefa via mcp"},
             )
+#Sugestão ChatGPT
+            print(type(criar))
+            print(criar)
 
+            print(type(criar.content))
+            print(criar.content)
+
+            print(type(criar.content[0]))
+            print(criar.content[0])
+
+            print(dir(criar.content[0]))
+           
             # Chama listar_tarefas
             listar = await session.call_tool(
                 "listar_tarefas",
